@@ -10,8 +10,10 @@ public class Tile : MonoBehaviour , Iunitys
     private GameObject pipeGameObject;
     private Vector3 tilePosition;
     private bool isSelected;
-    private GameObject pipeOnject;
+    private GameObject pipeObject;
     private Animator anim;
+    private Pipe pipe;
+    
 
     [SerializeField] private PipeType pipeType;
 
@@ -31,7 +33,17 @@ public class Tile : MonoBehaviour , Iunitys
             pipeGameObject = gameController.bentPipePrefab;
         }
 
-        pipeOnject = Instantiate(pipeGameObject, transform);
+        pipeObject = Instantiate(pipeGameObject, transform);
+
+        if (pipeType == PipeType.Straight)
+        {
+            pipe = new Straight(pipeObject);
+
+        }
+        else if (pipeType == PipeType.Bent)
+        {
+            pipe = new Bent(pipeObject);
+        }
 
         tilePosition = transform.position;
 

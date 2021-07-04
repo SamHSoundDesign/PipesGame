@@ -19,7 +19,7 @@ public class Controls : MonoBehaviour, Iunitys
 
         if (Input.GetKeyDown(KeyCode.W))
         {
-
+            Debug.Log($@"Total pipes == {Pipe.pipeCount}, Bent pipes == {Bent.bentCounter} and Straight pipes == {Straight.straightCounter}");
         }
 
         if (Input.GetKeyDown(KeyCode.A))

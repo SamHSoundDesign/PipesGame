@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
+      
     private GameController gameController;
     public GameObject bentPipePrefab;
     public GameObject straightPipePrefab;
@@ -17,6 +18,7 @@ public class GameController : MonoBehaviour
     public GameController()
     {
         selectedTileIndex = 0;
+        tileList = new List<Tile>();
     }
 
     void Start()
@@ -31,15 +33,17 @@ public class GameController : MonoBehaviour
         foreach (Tile tile in tileList)
         {
             tile.AStarts();
-
-            selectedTile = tileList[selectedTileIndex];
         }
+
+        selectedTile = tileList[selectedTileIndex];
+
     }
 
 
     void Update()
     {
         controls.BUpdates();
+       
     }
 
     public void SelectNextTile()

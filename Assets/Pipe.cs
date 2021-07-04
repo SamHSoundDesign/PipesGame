@@ -7,8 +7,10 @@ public abstract class Pipe
     private bool isPipeEndAConnected;
     private bool isPipeEndNConnected;
     private bool isBothPipeEndsConnected;
+    public static int pipeCount;
+    protected PipeType pipeType;
 
-    private GameObject pipeObject;
+    protected GameObject pipeObject;
 
     public Pipe()
     {
@@ -18,6 +20,15 @@ public abstract class Pipe
     public Pipe(GameObject pipeObject)
     {
         this.pipeObject = pipeObject;
+        pipeCount++;
+        
+    }
+
+    public Pipe(GameObject pipeObject , PipeType pipeType)
+    {
+        this.pipeObject = pipeObject;
+        pipeCount++;
+        this.pipeType = pipeType;
     }
 
 }
