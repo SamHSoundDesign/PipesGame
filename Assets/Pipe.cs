@@ -4,31 +4,167 @@ using UnityEngine;
 
 public abstract class Pipe
 {
+    public static GameController gameController;
     private bool isPipeEndAConnected;
     private bool isPipeEndNConnected;
     private bool isBothPipeEndsConnected;
+
+    public bool isSelected;
+    public int rotationindex = 0;
+    public int Rotationindex
+    {
+        get
+        {
+            return rotationindex;
+        }
+        set
+        {
+            if (value > 3)
+            {
+                rotationindex = 0;
+            }
+            else
+            {
+                rotationindex = value;
+            }
+        }
+    }
+
+    private int portSideA;
+    public int PortSideA
+    {
+        get
+        {
+            return portSideA;
+        }
+        set
+        {
+            if (value > 3)
+            {
+                portSideA = 0;
+            }
+            else
+            {
+                portSideA = value;
+            }
+        }
+    }
+    private int portSideB;
+    public int PortSideB
+    {
+        get
+        {
+            return portSideB;
+        }
+        set
+        {
+            if (value > 3)
+            {
+                portSideB = 0;
+            }
+            else
+            {
+                portSideB = value;
+            }
+        }
+    }
+    public bool isPowerSource;
+
+
+
     public static int pipeCount;
+    public int pipeID;
     protected PipeType pipeType;
 
     protected GameObject pipeObject;
+    protected Animator anim;
+    private Directions directions; 
 
-    public Pipe()
+    
+
+    public void SelectPipe()
     {
-
+        isSelected = true;
+        anim.SetBool("isSelected", true);
     }
 
-    public Pipe(GameObject pipeObject)
+    public void UnselectPipe()
     {
-        this.pipeObject = pipeObject;
-        pipeCount++;
+        isSelected = false;
+        anim.SetBool("isSelected", false);
+    }
+
+    public void RotatePipe()
+    {
+
+        switch (Rotationindex)
+        {
+            case 0:
+                pipeObject.transform.rotation = Quaternion.Euler(0, 0, -90);
+                RotatePorts();
+                break;
+            case 1:
+                pipeObject.transform.rotation = Quaternion.Euler(0, 0, -180);
+                RotatePorts();
+                break;
+            case 2:
+                pipeObject.transform.rotation = Quaternion.Euler(0, 0, -270);
+                RotatePorts();
+                break;
+            case 3:
+                pipeObject.transform.rotation = Quaternion.Euler(0, 0, 0);
+                RotatePorts();
+                break;
+        }
+
+        Rotationindex++;
         
+  
     }
 
-    public Pipe(GameObject pipeObject , PipeType pipeType)
+    private void RotatePorts()
     {
-        this.pipeObject = pipeObject;
-        pipeCount++;
-        this.pipeType = pipeType;
+        PortSideA++;
+        PortSideB++;
     }
 
+    private void CheckNeighbours()
+    {
+        if(PortSideA == 0 || PortSideB == 0)
+        {
+            //Check Pipe above
+            if(gameController.allPipes[gameController.SelectedPipeIndex + 4].PortSideA == 2 || gameController.allPipes[gameController.SelectedPipeIndex + 4].PortSideB == 2)
+            {
+                if(gameController.allPipes[gameController.SelectedPipeIndex + 4].isPowerSource)
+                {
+                    this.isPowerSource = true;
+                }
+            }
+            else
+            {
+                this.isPowerSource = false;
+            }
+        }
+
+        if (PortSideA == 1 || PortSideB == 1)
+        {
+            //Check Pipe right
+        }
+
+
+        if (PortSideA == 2 || PortSideB == 2)
+        {
+            //Check Pipe below
+        }
+
+        if (PortSideA == 3 || PortSideB == 3)
+        {
+            //Check Pipe Left
+        }
+
+    }
 }
+
+    
+
+

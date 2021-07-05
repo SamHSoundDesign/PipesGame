@@ -13,13 +13,16 @@ public class Tile : MonoBehaviour , Iunitys
     private GameObject pipeObject;
     private Animator anim;
     private Pipe pipe;
+    private static int tileCounter;
+    private int tileID;
     
 
     [SerializeField] private PipeType pipeType;
 
     public Tile()
     {
-       
+        tileCounter++;
+        tileID = tileCounter;
     }
 
     public void AStarts()
@@ -37,12 +40,14 @@ public class Tile : MonoBehaviour , Iunitys
 
         if (pipeType == PipeType.Straight)
         {
-            pipe = new Straight(pipeObject);
+            pipe = new Straight(pipeObject , pipeType);
+            gameController.allPipes.Add(pipe);
 
         }
         else if (pipeType == PipeType.Bent)
         {
-            pipe = new Bent(pipeObject);
+            pipe = new Bent(pipeObject , pipeType);
+            gameController.allPipes.Add(pipe);
         }
 
         tilePosition = transform.position;
@@ -58,15 +63,15 @@ public class Tile : MonoBehaviour , Iunitys
 
     }
 
-    public void UnselectTile()
-    {
-        isSelected = false;
-    }
+    //public void UnselectTile()
+    //{
+    //    isSelected = false;
+    //}
 
-    public void SelectTile()
-    {
-        isSelected = true; ;
-    }
+    //public void SelectTile()
+    //{
+    //    isSelected = true; ;
+    //}
 
 
 }

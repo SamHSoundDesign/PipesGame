@@ -12,12 +12,33 @@ public class GameController : MonoBehaviour
     private Controls controls;
     [SerializeField] private TileGroup tileGroup;
 
-    private int selectedTileIndex;
-    private Tile selectedTile;
+    private int selectedPipeIndex;
+    public int SelectedPipeIndex
+    {
+        get
+        {
+            return selectedPipeIndex;
+        }
+        set
+        {
+            if(value < allPipes.Count)
+            {
+                selectedPipeIndex = value;
+            }
+            else
+            {
+                selectedPipeIndex = 0;
+
+            }
+        }
+    }
+    private  Pipe selectedPipe;
+    public  List<Pipe> allPipes = new List<Pipe>();
+    public Tile selectedTile;
 
     public GameController()
     {
-        selectedTileIndex = 0;
+        SelectedPipeIndex = 0;
         tileList = new List<Tile>();
     }
 
@@ -27,6 +48,7 @@ public class GameController : MonoBehaviour
         controls = GetComponent<Controls>();
         Controls.gameController = this.gameController;
         Tile.gameController = this.gameController;
+        Pipe.gameController = this.gameController;
 
         tileList = tileGroup.tilesInGroup;
 
@@ -35,7 +57,8 @@ public class GameController : MonoBehaviour
             tile.AStarts();
         }
 
-        selectedTile = tileList[selectedTileIndex];
+        selectedPipe = allPipes[SelectedPipeIndex];
+        selectedPipe.SelectPipe();
 
     }
 
@@ -48,11 +71,11 @@ public class GameController : MonoBehaviour
 
     public void SelectNextTile()
     {
-        selectedTile = tileList[selectedTileIndex];
-        selectedTile.UnselectTile();
-        selectedTileIndex++;
-        selectedTile = tileList[selectedTileIndex];
-        selectedTile.SelectTile();
+        selectedPipe.UnselectPipe();
+        SelectedPipeIndex++;
+        selectedPipe = allPipes[SelectedPipeIndex];
+        selectedPipe.SelectPipe();
+        Debug.Log(SelectedPipeIndex);
     }
 
     

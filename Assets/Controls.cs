@@ -5,6 +5,11 @@ using UnityEngine;
 public class Controls : MonoBehaviour, Iunitys
 {
     public static GameController gameController;
+
+    public Controls( )
+    {
+       
+    }
     public void AStarts()
     {
 
@@ -15,11 +20,12 @@ public class Controls : MonoBehaviour, Iunitys
         if(Input.GetKeyDown(KeyCode.Space))
         {
             gameController.SelectNextTile();
+            
         }
 
         if (Input.GetKeyDown(KeyCode.W))
         {
-            Debug.Log($@"Total pipes == {Pipe.pipeCount}, Bent pipes == {Bent.bentCounter} and Straight pipes == {Straight.straightCounter}");
+            
         }
 
         if (Input.GetKeyDown(KeyCode.A))
@@ -35,6 +41,11 @@ public class Controls : MonoBehaviour, Iunitys
         if (Input.GetKeyDown(KeyCode.D))
         {
 
+        }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            gameController.allPipes[gameController.SelectedPipeIndex].RotatePipe();
         }
 
 
