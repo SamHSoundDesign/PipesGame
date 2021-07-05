@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tile : MonoBehaviour , Iunitys
+public class Tile : Iunitys
 {
     public static GameController gameController;
     private GameObject straightPipe;
@@ -19,8 +19,11 @@ public class Tile : MonoBehaviour , Iunitys
 
     [SerializeField] private PipeType pipeType;
 
-    public Tile()
+    private TileController tileController;
+
+    public Tile(TileController tileController)
     {
+        this.tileController = tileController;
         tileCounter++;
         tileID = tileCounter;
     }

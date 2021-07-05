@@ -36,15 +36,17 @@ public class GameController : MonoBehaviour
     private  Pipe selectedPipe;
     public  List<Pipe> allPipes = new List<Pipe>();
     public Tile selectedTile;
+
+
+
+    private TileController tileController;
+    private PipeController pipeController;
     
-
-    public GameController()
-    {
-       
-    }
-
     void Start()
     {
+        tileController = new TileController(this);
+        pipeController = new PipeController(this);
+
         SelectedPipeIndex = 0;
         tileList = new List<Tile>();
         pipeMatrix = new PipeMatrix();
@@ -67,7 +69,7 @@ public class GameController : MonoBehaviour
         selectedPipe.SelectPipe();
 
         //Debug.Log(allPipes[3].pipeMatrixPosition);
-        Debug.Log(pipeMatrix.DefinePositionInMatrix(2,1))
+        Debug.Log(pipeMatrix.DefinePositionInMatrix(1));
     }
 
 

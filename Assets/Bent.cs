@@ -28,7 +28,7 @@ public class Bent : Pipe
         anim = this.pipeObject.GetComponent<Animator>();
         PortSideA = 1;
         PortSideB = 2;
-        pipeMatrix = Bent.gameController.pipeMatrix;
+        pipeMatrix = gameController.pipeMatrix;
         pipeMatrixPosition =  pipeMatrix.DefinePositionInMatrix(pipeID);
     }
 }

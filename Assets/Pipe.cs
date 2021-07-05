@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Pipe
+public abstract class Pipe 
 {
     public static GameController gameController;
     private bool isPipeEndAConnected;
@@ -79,8 +79,6 @@ public abstract class Pipe
 
     protected GameObject pipeObject;
     protected Animator anim;
-    private Directions directions; 
-
     
 
     public void SelectPipe()
