@@ -11,6 +11,7 @@ public abstract class Pipe
 
     public bool isSelected;
     public int rotationindex = 0;
+    protected PipeType pipeType;
     public int Rotationindex
     {
         get
@@ -70,11 +71,11 @@ public abstract class Pipe
     }
     public bool isPowerSource;
 
-
+    public PipeMatrix pipeMatrix;
+    public Vector2 pipeMatrixPosition;
 
     public static int pipeCount;
-    public int pipeID;
-    protected PipeType pipeType;
+    public int pipeID; 
 
     protected GameObject pipeObject;
     protected Animator anim;
@@ -128,41 +129,42 @@ public abstract class Pipe
         PortSideB++;
     }
 
-    private void CheckNeighbours()
-    {
-        if(PortSideA == 0 || PortSideB == 0)
-        {
-            //Check Pipe above
-            if(gameController.allPipes[gameController.SelectedPipeIndex + 4].PortSideA == 2 || gameController.allPipes[gameController.SelectedPipeIndex + 4].PortSideB == 2)
-            {
-                if(gameController.allPipes[gameController.SelectedPipeIndex + 4].isPowerSource)
-                {
-                    this.isPowerSource = true;
-                }
-            }
-            else
-            {
-                this.isPowerSource = false;
-            }
-        }
+    ////WIP
+    //private void CheckNeighbours()
+    //{
+    //    if(PortSideA == 0 || PortSideB == 0)
+    //    {
+    //        //Check Pipe above
+    //        if(gameController.allPipes[gameController.SelectedPipeIndex + 4].PortSideA == 2 || gameController.allPipes[gameController.SelectedPipeIndex + 4].PortSideB == 2)
+    //        {
+    //            if(gameController.allPipes[gameController.SelectedPipeIndex + 4].isPowerSource)
+    //            {
+    //                this.isPowerSource = true;
+    //            }
+    //        }
+    //        else
+    //        {
+    //            this.isPowerSource = false;
+    //        }
+    //    }
 
-        if (PortSideA == 1 || PortSideB == 1)
-        {
-            //Check Pipe right
-        }
+    //    if (PortSideA == 1 || PortSideB == 1)
+    //    {
+    //        //Check Pipe right
+    //    }
 
 
-        if (PortSideA == 2 || PortSideB == 2)
-        {
-            //Check Pipe below
-        }
+    //    if (PortSideA == 2 || PortSideB == 2)
+    //    {
+    //        //Check Pipe below
+    //    }
 
-        if (PortSideA == 3 || PortSideB == 3)
-        {
-            //Check Pipe Left
-        }
+    //    if (PortSideA == 3 || PortSideB == 3)
+    //    {
+    //        //Check Pipe Left
+    //    }
 
-    }
+    //}
 }
 
     

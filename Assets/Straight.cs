@@ -9,19 +9,15 @@ public class Straight : Pipe
    
 
     public Straight()
+        : this(null)
     {
-        PortSideA = 0;
-        PortSideB = 2;
+       
     }
 
     public Straight(GameObject pipeObject)
+        : this(pipeObject , PipeType.Straight)
     {
-        this.pipeObject = pipeObject;
-        pipeCount++;
-        straightCounter++;
-        anim = this.pipeObject.GetComponent<Animator>();
-        PortSideA = 0;
-        PortSideB = 2;
+      
     }
 
     public Straight(GameObject pipeObject , PipeType pipeType)
@@ -33,6 +29,7 @@ public class Straight : Pipe
         anim = this.pipeObject.GetComponent<Animator>();
         PortSideA = 0;
         PortSideB = 2;
+        pipeMatrix = Straight.gameController.pipeMatrix;
     }
 }
 

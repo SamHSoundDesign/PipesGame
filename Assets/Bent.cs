@@ -8,19 +8,15 @@ public class Bent : Pipe
     
 
     public Bent()
+        : this(null)
     {
-        PortSideA = 1;
-        PortSideB = 2;
+       
 }
 
     public Bent(GameObject pipeObject)
+        : this(pipeObject , PipeType.Bent)
     {
-        this.pipeObject = pipeObject;
-        pipeCount++;
-        bentCounter++;
-        anim = this.pipeObject.GetComponent<Animator>();
-        PortSideA = 1;
-        PortSideB = 2;
+     
     }
 
     public Bent(GameObject pipeObject , PipeType pipeType)
@@ -32,5 +28,7 @@ public class Bent : Pipe
         anim = this.pipeObject.GetComponent<Animator>();
         PortSideA = 1;
         PortSideB = 2;
+        pipeMatrix = Bent.gameController.pipeMatrix;
+        pipeMatrixPosition =  pipeMatrix.DefinePositionInMatrix(pipeID);
     }
 }
