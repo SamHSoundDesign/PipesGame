@@ -3,18 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class TileController : IUnitys
+public class TileController : Controllers , IUnitys
 {
     private List<Tile> tileList;
-    private GameController gameController;
-    private PipeController pipeController;
-    
-    
-    public TileController(GameController gameController , PipeController  pipeController)
+    public PipeController pipeController;
+    public BlockController blockController;
+
+
+
+    public TileController(GameController gameController , PipeController  pipeController , BlockController blockController)
     {
         tileList = new List<Tile>();
-        this.gameController = gameController;
+        base.gameController = gameController;
         this.pipeController = pipeController;
+        this.blockController = blockController;
         
     }
 
@@ -22,7 +24,7 @@ public class TileController : IUnitys
     {
         foreach (Tile tile in tileList)
         {
-            tile.ConvertTileToPipe(pipeController);
+            tile.ConvertTileToGameBoardObject(pipeController);
         }
 
         

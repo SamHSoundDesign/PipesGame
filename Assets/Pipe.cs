@@ -2,17 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Pipe 
+public abstract class Pipe : GameBoardObjects
 {
     protected PipeController pipeController;
-    protected GameController gameController;
-   
-  
-
-    protected Vector3 pipePosition;
     public bool isSelected;
     public int rotationindex = 0;
-    protected PipeType pipeType;
     public int Rotationindex
     {
         get
@@ -31,7 +25,6 @@ public abstract class Pipe
             }
         }
     }
-
     private int portSideA;
     public int PortSideA
     {
@@ -76,9 +69,9 @@ public abstract class Pipe
     public Vector2 pipeMatrixPosition;
     protected int pipeId;
 
-    protected GameObject pipeObject;
+    
     protected GameObject pipePrefab;
-    protected Animator anim;
+    
     
 
     public void SelectPipe()
@@ -100,19 +93,19 @@ public abstract class Pipe
         switch (Rotationindex)
         {
             case 0:
-                pipeObject.transform.rotation = Quaternion.Euler(0, 0, -90);
+                gameBoardObject.transform.rotation = Quaternion.Euler(0, 0, -90);
                 RotatePorts();
                 break;
             case 1:
-                pipeObject.transform.rotation = Quaternion.Euler(0, 0, -180);
+                gameBoardObject.transform.rotation = Quaternion.Euler(0, 0, -180);
                 RotatePorts();
                 break;
             case 2:
-                pipeObject.transform.rotation = Quaternion.Euler(0, 0, -270);
+                gameBoardObject.transform.rotation = Quaternion.Euler(0, 0, -270);
                 RotatePorts();
                 break;
             case 3:
-                pipeObject.transform.rotation = Quaternion.Euler(0, 0, 0);
+                gameBoardObject.transform.rotation = Quaternion.Euler(0, 0, 0);
                 RotatePorts();
                 break;
         }

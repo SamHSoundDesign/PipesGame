@@ -20,13 +20,12 @@ public class Straight : Pipe
     public Straight(int pipeId , Vector3 pipePosition , PipeController pipeController)
     {
         this.pipeId = pipeId;
-        this.pipePosition = pipePosition;
+        this.gameBoardObjectPosition = pipePosition;
         this.pipeController = pipeController;
-        gameController = pipeController.gameController;
         StraightCounter++;
         pipePrefab = this.pipeController.straightPipePrefab;
-        pipeObject = this.pipeController.InstantiatePipeObject(pipePrefab, this.pipePosition);
-        anim = pipeObject.GetComponent<Animator>();
+        gameBoardObject = this.pipeController.InstantiatePipeObject(pipePrefab, base.gameBoardObjectPosition);
+        anim = gameBoardObject.GetComponent<Animator>();
         this.pipeController.AddToPipeList(this);
     }
 

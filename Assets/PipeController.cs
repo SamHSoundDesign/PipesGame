@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class PipeController : IUnitys
+public class PipeController : Controllers, IUnitys
 {
     private List<Pipe> pipeList;
-    public GameController gameController;
     public GameObject bentPipePrefab;
     public GameObject straightPipePrefab;
 
@@ -17,17 +16,22 @@ public class PipeController : IUnitys
         }
         set
         {
-            if(value < pipeList.Count)
+            if (value > pipeList.Count)
             {
-                selectedPipeID = value;
+                selectedPipeID = 0;
+            }
+            else if (value < 0)
+            {
+                selectedPipeID = pipeList.Count;
             }
             else
             {
-                selectedPipeID = 0;
+                selectedPipeID = value;
             }
         }
     }
     public Pipe selectedPipe;
+
 
     public PipeController(GameController gameController , GameObject bentPipePrefab , GameObject straightPipePrefab)
     {
@@ -56,7 +60,7 @@ public class PipeController : IUnitys
 
     public GameObject InstantiatePipeObject(GameObject prefab , Vector3 position )
     {
-        return gameController.InstantiatePipeObject(prefab, position);
+        return gameController.InstantiateGameBoardObjectObject(prefab, position);
 
     }
 
@@ -66,14 +70,36 @@ public class PipeController : IUnitys
         
     }
 
-    public void SelectNextTile()
+   public void SelectPipeAbove()
     {
+      
+        SelectPipe(4);
+    }
+
+    public void SelectPipeBelow()
+    {
+        SelectPipe(-4);
+    }
+
+    public void SelectPipeRight()
+    {
+        
+        SelectPipe(1);
+    }
+
+    public void SelectPipeLeft()
+    {
+       
+        SelectPipe(-1);
+    }
+
+    private void SelectPipe(int direction)
+    {
+
         selectedPipe.UnselectPipe();
-        SelectedPipeID++;
+        SelectedPipeID += direction;
         selectedPipe = pipeList[SelectedPipeID];
         selectedPipe.SelectPipe();
-       
-
     }
 
 

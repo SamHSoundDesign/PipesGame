@@ -5,10 +5,13 @@ using UnityEngine;
 public class Controls : IUnitys
 {
     private GameController gameController;
+    private PipeController pipeController;
 
     public Controls(GameController gameController )
     {
         this.gameController = gameController;
+        this.pipeController = gameController.pipeController;
+
     }
     public void AStarts()
     {
@@ -17,33 +20,27 @@ public class Controls : IUnitys
 
     public void BUpdates()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            gameController.pipeController.SelectNextTile();
-            
-        }
-
         if (Input.GetKeyDown(KeyCode.W))
         {
-            
+            pipeController.SelectPipeAbove();
         }
 
         if (Input.GetKeyDown(KeyCode.A))
         {
-
+            pipeController.SelectPipeLeft();
         }
 
         if (Input.GetKeyDown(KeyCode.S))
         {
-
+            pipeController.SelectPipeBelow();
         }
 
         if (Input.GetKeyDown(KeyCode.D))
         {
-
+            pipeController.SelectPipeRight();
         }
 
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             gameController.pipeController.selectedPipe.RotatePipe();
         }

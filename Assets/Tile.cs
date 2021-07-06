@@ -18,31 +18,38 @@ public class Tile : IUnitys
         }
     }
     private int tileID;
-    public PipeType pipeType;
+    public GameBoardObjectTypes gameBoardObjectType;
 
     private TileController tileController;
+    private BlockController blockController;
 
-    public Tile(TileController tileController , PipeType pipeType , Vector3 tilePosition )
+    public Tile(TileController tileController , GameBoardObjectTypes pipeType , Vector3 tilePosition)
     {
         this.tileController = tileController;
         this.tilePosition = tilePosition;
-        this.pipeType = pipeType;
+        this.gameBoardObjectType = pipeType;
+        blockController = tileController.blockController;
         TileCounter++;
         tileID = tileCounter;
         this.tileController.AddToTileList(this);
     }
 
-    public void ConvertTileToPipe(PipeController pipeController)
+    public void ConvertTileToGameBoardObject(PipeController pipeController)
     {
         
-            if (pipeType == PipeType.Straight)
+            if (gameBoardObjectType == GameBoardObjectTypes.Straight)
             {
                 new Straight(tileID, tilePosition , pipeController);
             }
-            else if (pipeType == PipeType.Bent)
+            else if (gameBoardObjectType == GameBoardObjectTypes.Bent)
             {
                 new Bent(tileID, tilePosition , pipeController);
             }
+            else if(gameBoardObjectType == GameBoardObjectTypes.Blank)
+            {
+                new Block(tilePosition, blockController);
+        }
+        
         
     }
 
