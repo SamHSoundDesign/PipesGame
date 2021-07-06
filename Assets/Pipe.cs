@@ -4,11 +4,10 @@ using UnityEngine;
 
 public abstract class Pipe 
 {
-    public static GameController gameController;
-    private bool isPipeEndAConnected;
-    private bool isPipeEndNConnected;
-    private bool isBothPipeEndsConnected;
+    protected PipeController pipeController;
+    protected GameController gameController;
 
+    protected Vector3 pipePosition;
     public bool isSelected;
     public int rotationindex = 0;
     protected PipeType pipeType;
@@ -73,11 +72,10 @@ public abstract class Pipe
 
     public PipeMatrix pipeMatrix;
     public Vector2 pipeMatrixPosition;
-
-    public static int pipeCount;
-    public int pipeID; 
+    protected int pipeId;
 
     protected GameObject pipeObject;
+    protected GameObject pipePrefab;
     protected Animator anim;
     
 
@@ -85,6 +83,7 @@ public abstract class Pipe
     {
         isSelected = true;
         anim.SetBool("isSelected", true);
+        
     }
 
     public void UnselectPipe()
@@ -126,6 +125,8 @@ public abstract class Pipe
         PortSideA++;
         PortSideB++;
     }
+
+    
 
     ////WIP
     //private void CheckNeighbours()

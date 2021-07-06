@@ -4,89 +4,53 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-      
-    private GameController gameController;
+    //Pipe Prefabs
     public GameObject bentPipePrefab;
     public GameObject straightPipePrefab;
-    private static List<Tile> tileList;
-    private Controls controls;
-    [SerializeField] private TileGroup tileGroup;
-    public PipeMatrix pipeMatrix;
-
-    private int selectedPipeIndex;
-    public int SelectedPipeIndex
-    {
-        get
-        {
-            return selectedPipeIndex;
-        }
-        set
-        {
-            if(value < allPipes.Count)
-            {
-                selectedPipeIndex = value;
-            }
-            else
-            {
-                selectedPipeIndex = 0;
-
-            }
-        }
-    }
-    private  Pipe selectedPipe;
-    public  List<Pipe> allPipes = new List<Pipe>();
-    public Tile selectedTile;
-
-
-
-    private TileController tileController;
-    private PipeController pipeController;
+      
+    //Tile Group
+    [SerializeField] private TileDataGroup tileDataGroup;
     
+    private TileController tileController;    
+    public PipeController pipeController;
+    private Controls controls;
+
     void Start()
     {
-        tileController = new TileController(this);
-        pipeController = new PipeController(this);
-
-        SelectedPipeIndex = 0;
-        tileList = new List<Tile>();
-        pipeMatrix = new PipeMatrix();
-       
-
-        this.gameController = GetComponent<GameController>();
-        controls = GetComponent<Controls>();
-        //Controls.gameController = this.gameController;
-        Tile.gameController = this.gameController;
-        Pipe.gameController = this.gameController;
-
-        tileList = tileGroup.tilesInGroup;
-
-        foreach (Tile tile in tileList)
-        {
-            tile.AStarts();
-        }
-
-        selectedPipe = allPipes[SelectedPipeIndex];
-        selectedPipe.SelectPipe();
-
-        //Debug.Log(allPipes[3].pipeMatrixPosition);
-        Debug.Log(pipeMatrix.DefinePositionInMatrix(1));
+        SetUpGameController();
+        
     }
 
 
     void Update()
     {
         controls.BUpdates();
-       
-    }
-
-    public void SelectNextTile()
-    {
-        selectedPipe.UnselectPipe();
-        SelectedPipeIndex++;
-        selectedPipe = allPipes[SelectedPipeIndex];
-        selectedPipe.SelectPipe();
-        Debug.Log(SelectedPipeIndex);
     }
 
     
+
+    public GameObject InstantiatePipeObject(GameObject prefab , Vector3 position)
+    {
+        GameObject newPipe = Instantiate(prefab , position , new Quaternion (0,0,0,0));
+        return newPipe;
+    }
+
+    private void SetUpGameController()
+    {
+        pipeController = new PipeController(this, bentPipePrefab, straightPipePrefab);
+        tileController = new TileController(this, pipeController);
+        
+
+        tileDataGroup.ManualStart(tileController);
+
+        tileController.AStarts();
+
+        //pipeMatrix = new PipeMatrix();
+        pipeController.AStarts();
+
+        controls = new Controls(this);
+    }
+
+
+
 }

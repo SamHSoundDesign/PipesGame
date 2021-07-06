@@ -2,60 +2,44 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tile : Iunitys
+public class Tile : IUnitys
 {
-    public static GameController gameController;
-    private GameObject straightPipe;
-    private GameObject bentPipe;
-    private GameObject pipeGameObject;
     private Vector3 tilePosition;
-    private bool isSelected;
-    private GameObject pipeObject;
-    private Animator anim;
-    private Pipe pipe;
-    private static int tileCounter;
+    private int tileCounter;
     private int tileID;
-    
-
-    [SerializeField] private PipeType pipeType;
+    public PipeType pipeType;
 
     private TileController tileController;
 
-    public Tile(TileController tileController)
+    public Tile(TileController tileController , PipeType pipeType , Vector3 tilePosition )
     {
         this.tileController = tileController;
-        tileCounter++;
+        this.tilePosition = tilePosition;
+        this.pipeType = pipeType;
         tileID = tileCounter;
+        tileCounter++;
+        this.tileController.AddToTileList(this);
+    }
+
+    public void ConvertTileToPipe(PipeController pipeController)
+    {
+        
+            if (pipeType == PipeType.Straight)
+            {
+                new Straight(tileID, tilePosition , pipeController);
+            }
+            else if (pipeType == PipeType.Bent)
+            {
+                new Bent(tileID, tilePosition , pipeController);
+            }
+        
     }
 
     public void AStarts()
     {
-        if (pipeType == PipeType.Straight)
-        {
-            pipeGameObject = gameController.straightPipePrefab;
-        }
-        else if (pipeType == PipeType.Bent)
-        {
-            pipeGameObject = gameController.bentPipePrefab;
-        }
-
-        pipeObject = Instantiate(pipeGameObject, transform);
-
-        if (pipeType == PipeType.Straight)
-        {
-            pipe = new Straight(pipeObject , pipeType);
-            gameController.allPipes.Add(pipe);
-
-        }
-        else if (pipeType == PipeType.Bent)
-        {
-            pipe = new Bent(pipeObject , pipeType);
-            gameController.allPipes.Add(pipe);
-        }
-
-        tilePosition = transform.position;
-
+       
     }
+
     public void BUpdates()
     {
         
@@ -63,19 +47,7 @@ public class Tile : Iunitys
 
     public void CFixedUpdates()
     {
-
+        
     }
-
-    //public void UnselectTile()
-    //{
-    //    isSelected = false;
-    //}
-
-    //public void SelectTile()
-    //{
-    //    isSelected = true; ;
-    //}
-
-
 }
 

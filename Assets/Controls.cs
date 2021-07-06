@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Controls : MonoBehaviour, Iunitys
+public class Controls : IUnitys
 {
-    public static GameController gameController;
+    private GameController gameController;
 
-    public Controls( )
+    public Controls(GameController gameController )
     {
-       
+        this.gameController = gameController;
     }
     public void AStarts()
     {
@@ -19,7 +19,7 @@ public class Controls : MonoBehaviour, Iunitys
     {
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            gameController.SelectNextTile();
+            gameController.pipeController.SelectNextTile();
             
         }
 
@@ -45,7 +45,7 @@ public class Controls : MonoBehaviour, Iunitys
 
         if (Input.GetKeyDown(KeyCode.R))
         {
-            gameController.allPipes[gameController.SelectedPipeIndex].RotatePipe();
+            gameController.pipeController.selectedPipe.RotatePipe();
         }
 
 

@@ -4,32 +4,23 @@ using UnityEngine;
 
 public class Straight : Pipe
 {
-    public static int straightCounter;
-
-   
-
-    public Straight()
-        : this(null)
+    private int straightCounter;
+    
+    public Straight(int pipeId , Vector3 pipePosition , PipeController pipeController)
     {
-       
-    }
-
-    public Straight(GameObject pipeObject)
-        : this(pipeObject , PipeType.Straight)
-    {
-      
-    }
-
-    public Straight(GameObject pipeObject , PipeType pipeType)
-    {
-        this.pipeObject = pipeObject;
-        this.pipeType = pipeType;
-        pipeCount++;
+        this.pipeId = pipeId;
+        this.pipePosition = pipePosition;
+        this.pipeController = pipeController;
+        this.gameController = pipeController.gameController;
+        
+        //Need to fix the counter
         straightCounter++;
-        anim = this.pipeObject.GetComponent<Animator>();
-        PortSideA = 0;
-        PortSideB = 2;
-        pipeMatrix = Straight.gameController.pipeMatrix;
+        this.pipePrefab = this.pipeController.straightPipePrefab;
+        this.pipeObject = this.pipeController.InstantiatePipeObject(pipePrefab, this.pipePosition);
+        anim = pipeObject.GetComponent<Animator>();
+        this.pipeController.AddToPipeList(this);
     }
+
+    
 }
 

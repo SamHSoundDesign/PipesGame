@@ -5,30 +5,19 @@ using UnityEngine;
 public class Bent : Pipe
 {
     public static int bentCounter;
-    
 
-    public Bent()
-        : this(null)
+    public Bent(int pipeId, Vector3 pipePosition , PipeController pipeController)
     {
-       
-}
-
-    public Bent(GameObject pipeObject)
-        : this(pipeObject , PipeType.Bent)
-    {
-     
-    }
-
-    public Bent(GameObject pipeObject , PipeType pipeType)
-    {
-        this.pipeObject = pipeObject;
-        this.pipeType = pipeType;
-        pipeCount++;
+        this.pipeId = pipeId;
+        this.pipePosition = pipePosition;
+        this.pipeController = pipeController;
+        gameController = pipeController.gameController;
+        //Need to fix the counter
         bentCounter++;
-        anim = this.pipeObject.GetComponent<Animator>();
-        PortSideA = 1;
-        PortSideB = 2;
-        pipeMatrix = gameController.pipeMatrix;
-        pipeMatrixPosition =  pipeMatrix.DefinePositionInMatrix(pipeID);
+        pipePrefab = this.pipeController.bentPipePrefab;
+        pipeObject = this.pipeController.InstantiatePipeObject(pipePrefab, this.pipePosition);
+        anim = pipeObject.GetComponent<Animator>();
+        this.pipeController.AddToPipeList(this);
+        
     }
 }

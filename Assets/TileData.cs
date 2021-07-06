@@ -3,10 +3,10 @@ using UnityEngine;
 
 
 
-public class TileData : MonoBehaviour, Iunitys
+public class TileData : MonoBehaviour, IUnitys
 {
-    private Vector3 tilePosition;
-    [SerializeField] private PipeType pipeType;
+    public Vector3 tilePosition;
+    public PipeType pipeType;
     public void AStarts()
     {
         tilePosition = transform.position;
