@@ -5,7 +5,18 @@ using UnityEngine;
 public class Tile : IUnitys
 {
     private Vector3 tilePosition;
-    private int tileCounter;
+    private static int tileCounter;
+    public int TileCounter
+    {
+        get
+        {
+            return tileCounter;
+        }
+        set
+        {
+            tileCounter = value;
+        }
+    }
     private int tileID;
     public PipeType pipeType;
 
@@ -16,8 +27,8 @@ public class Tile : IUnitys
         this.tileController = tileController;
         this.tilePosition = tilePosition;
         this.pipeType = pipeType;
+        TileCounter++;
         tileID = tileCounter;
-        tileCounter++;
         this.tileController.AddToTileList(this);
     }
 
@@ -37,7 +48,7 @@ public class Tile : IUnitys
 
     public void AStarts()
     {
-       
+      
     }
 
     public void BUpdates()

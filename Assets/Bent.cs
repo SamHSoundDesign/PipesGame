@@ -4,7 +4,18 @@ using UnityEngine;
 
 public class Bent : Pipe
 {
-    public static int bentCounter;
+    private static int bentCounter;
+    public  int BentCounter
+    {
+        get
+        {
+            return bentCounter;
+        }
+        private set
+        {
+            bentCounter = value;
+        }
+    }
 
     public Bent(int pipeId, Vector3 pipePosition , PipeController pipeController)
     {
@@ -12,8 +23,7 @@ public class Bent : Pipe
         this.pipePosition = pipePosition;
         this.pipeController = pipeController;
         gameController = pipeController.gameController;
-        //Need to fix the counter
-        bentCounter++;
+        BentCounter++;
         pipePrefab = this.pipeController.bentPipePrefab;
         pipeObject = this.pipeController.InstantiatePipeObject(pipePrefab, this.pipePosition);
         anim = pipeObject.GetComponent<Animator>();
