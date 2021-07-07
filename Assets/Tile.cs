@@ -2,70 +2,49 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tile : IUnitys
+public class Tile
 {
     private Vector3 tilePosition;
-    private static int tileCounter;
-    public int TileCounter
-    {
-        get
-        {
-            return tileCounter;
-        }
-        set
-        {
-            tileCounter = value;
-        }
-    }
-    private int tileID;
+    public int tileID;
+    
     public GameBoardObjectTypes gameBoardObjectType;
 
     private TileController tileController;
     private BlockController blockController;
+    private GridController gridController;
 
-    public Tile(TileController tileController , GameBoardObjectTypes pipeType , Vector3 tilePosition)
+    public int[] tileGridID = new int[2];
+
+    public Tile(TileController tileController , GameBoardObjectTypes pipeType , Vector3 tilePosition , int tileID)
     {
         this.tileController = tileController;
         this.tilePosition = tilePosition;
         this.gameBoardObjectType = pipeType;
-        blockController = tileController.blockController;
-        TileCounter++;
-        tileID = tileCounter;
+        this.tileID = tileID;
         this.tileController.AddToTileList(this);
+        this.tileGridID = tileController.ConverTileIdTo2DArray(tileID);
+        //Debug.Log(@$"Tile ID {tileID} has tile Grid id[0] = {tileGridID[0]} and has tile gridid[1] = {tileGridID[1]}");
     }
 
-    public void ConvertTileToGameBoardObject(PipeController pipeController)
+    public void CreateGameBoardObject(PipeController pipeController , BlockController blockController)
     {
         
             if (gameBoardObjectType == GameBoardObjectTypes.Straight)
             {
-                new Straight(tileID, tilePosition , pipeController);
+                new Straight(tileID, tileGridID , pipeController);
             }
             else if (gameBoardObjectType == GameBoardObjectTypes.Bent)
             {
-                new Bent(tileID, tilePosition , pipeController);
+                new Bent(tileID, tileGridID, pipeController);
             }
             else if(gameBoardObjectType == GameBoardObjectTypes.Blank)
             {
-                new Block(tilePosition, blockController);
-        }
+                new Block(tileID, tileGridID, tilePosition, blockController);
+            }
         
         
     }
 
-    public void AStarts()
-    {
-      
-    }
-
-    public void BUpdates()
-    {
-        
-    }
-
-    public void CFixedUpdates()
-    {
-        
-    }
+   
 }
 

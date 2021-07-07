@@ -17,16 +17,16 @@ public class Straight : Pipe
         }
     }
     
-    public Straight(int pipeId , Vector3 pipePosition , PipeController pipeController)
+    public Straight(int tileID , int[] tileGridID , PipeController pipeController)
     {
-        this.pipeId = pipeId;
-        this.gameBoardObjectPosition = pipePosition;
-        this.pipeController = pipeController;
+        pipePrefab = pipeController.straightPipePrefab;
+        isSelectable = true;
+
+        SetUpPipeObject(pipeController, tileID, tileGridID);
+        CreateGameBoardObject();
+
+
         StraightCounter++;
-        pipePrefab = this.pipeController.straightPipePrefab;
-        gameBoardObject = this.pipeController.InstantiatePipeObject(pipePrefab, base.gameBoardObjectPosition);
-        anim = gameBoardObject.GetComponent<Animator>();
-        this.pipeController.AddToPipeList(this);
     }
 
     

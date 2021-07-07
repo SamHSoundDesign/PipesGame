@@ -8,11 +8,17 @@ public class GameController : MonoBehaviour
     public GameObject bentPipePrefab;
     public GameObject straightPipePrefab;
     public GameObject blockPrefab;
+
+    //Grid details
+    [SerializeField] private int xWidth;
+    [SerializeField] private int unitsPerGrid;
+
       
     //Tile Group
     [SerializeField] private TileDataGroup tileDataGroup;
 
     private Controllers controllers;
+    private GridController gridController;
     private TileController tileController;    
     public PipeController pipeController;
     public BlockController blockController;
@@ -40,17 +46,16 @@ public class GameController : MonoBehaviour
 
     private void SetUpGameController()
         
-    {   
-        pipeController = new PipeController(this, bentPipePrefab, straightPipePrefab);
+    {
+        gridController = new GridController(this , xWidth , unitsPerGrid);
+        pipeController = new PipeController(this , bentPipePrefab , straightPipePrefab);
         blockController = new BlockController(this);
-        tileController = new TileController(this, pipeController , blockController);
+        tileController = new TileController(this , pipeController , blockController , gridController);
         
-
         tileDataGroup.ManualStart(tileController);
 
         tileController.AStarts();
 
-        //pipeMatrix = new PipeMatrix();
         pipeController.AStarts();
 
         controls = new Controls(this);

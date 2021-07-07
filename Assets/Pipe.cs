@@ -25,55 +25,9 @@ public abstract class Pipe : GameBoardObjects
             }
         }
     }
-    private int portSideA;
-    public int PortSideA
-    {
-        get
-        {
-            return portSideA;
-        }
-        set
-        {
-            if (value > 3)
-            {
-                portSideA = 0;
-            }
-            else
-            {
-                portSideA = value;
-            }
-        }
-    }
-    private int portSideB;
-    public int PortSideB
-    {
-        get
-        {
-            return portSideB;
-        }
-        set
-        {
-            if (value > 3)
-            {
-                portSideB = 0;
-            }
-            else
-            {
-                portSideB = value;
-            }
-        }
-    }
-    public bool isPowerSource;
 
-    public PipeMatrix pipeMatrix;
-    public Vector2 pipeMatrixPosition;
-    protected int pipeId;
-
+    public GameObject pipePrefab;
     
-    protected GameObject pipePrefab;
-    
-    
-
     public void SelectPipe()
     {
         isSelected = true;
@@ -85,6 +39,23 @@ public abstract class Pipe : GameBoardObjects
     {
         isSelected = false;
         anim.SetBool("isSelected", false);
+    }
+
+    public void SetUpPipeObject(PipeController pipeController, int tileID, int[] tileGridID)
+    {
+        this.pipeController = pipeController;
+        SetUpGameBoardObject(tileID, tileGridID);
+    }
+
+    public void CreateGameBoardObject()
+    {
+
+        gameBoardObject = pipeController.InstantiatePipeObject(pipePrefab, gameBoardObjectPosition);
+        Debug.Log(gameBoardObject);
+
+        anim = gameBoardObject.GetComponent<Animator>();
+
+        this.pipeController.AddToPipeList(this);
     }
 
     public void RotatePipe()
@@ -117,48 +88,10 @@ public abstract class Pipe : GameBoardObjects
 
     private void RotatePorts()
     {
-        PortSideA++;
-        PortSideB++;
+        //PortSideA++;
+        //PortSideB++;
     }
 
-    
-
-    ////WIP
-    //private void CheckNeighbours()
-    //{
-    //    if(PortSideA == 0 || PortSideB == 0)
-    //    {
-    //        //Check Pipe above
-    //        if(gameController.allPipes[gameController.SelectedPipeIndex + 4].PortSideA == 2 || gameController.allPipes[gameController.SelectedPipeIndex + 4].PortSideB == 2)
-    //        {
-    //            if(gameController.allPipes[gameController.SelectedPipeIndex + 4].isPowerSource)
-    //            {
-    //                this.isPowerSource = true;
-    //            }
-    //        }
-    //        else
-    //        {
-    //            this.isPowerSource = false;
-    //        }
-    //    }
-
-    //    if (PortSideA == 1 || PortSideB == 1)
-    //    {
-    //        //Check Pipe right
-    //    }
-
-
-    //    if (PortSideA == 2 || PortSideB == 2)
-    //    {
-    //        //Check Pipe below
-    //    }
-
-    //    if (PortSideA == 3 || PortSideB == 3)
-    //    {
-    //        //Check Pipe Left
-    //    }
-
-    //}
 }
 
     

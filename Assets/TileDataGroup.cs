@@ -7,7 +7,8 @@ public class TileDataGroup : MonoBehaviour , IUnitys
     
     public List<TileData> tileDatasInGroup;
     private TileController tileController;
-    private Tile tile;
+   
+    private int tileID;
    
     public void AStarts()
     {
@@ -26,13 +27,15 @@ public class TileDataGroup : MonoBehaviour , IUnitys
 
     public void ManualStart(TileController tileController)
     {
+        tileID = 0;
         this.tileController = tileController;
 
 
         foreach (TileData tileData in tileDatasInGroup)
         {
-            tileData.AStarts();
-            new Tile(tileController , tileData.pipeType , tileData.tilePosition);
+            //tileData.AStarts();
+            new Tile(tileController , tileData.pipeType , tileData.tilePosition , tileID);
+            tileID++;
           
         }
     }

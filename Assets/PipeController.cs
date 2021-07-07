@@ -70,15 +70,15 @@ public class PipeController : Controllers, IUnitys
         
     }
 
-   public void SelectPipeAbove()
+    public void SelectPipeAbove()
     {
       
-        SelectPipe(4);
+        SelectPipe(3    );
     }
 
     public void SelectPipeBelow()
     {
-        SelectPipe(-4);
+        SelectPipe(-3);
     }
 
     public void SelectPipeRight()

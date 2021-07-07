@@ -17,16 +17,16 @@ public class Bent : Pipe
         }
     }
 
-    public Bent(int pipeId, Vector3 pipePosition , PipeController pipeController)
+    public Bent(int tileID, int[] tileGridID  , PipeController pipeController)
     {
-        this.pipeId = pipeId;
-        gameBoardObjectPosition = pipePosition;
-        this.pipeController = pipeController;
-        BentCounter++;
-        pipePrefab = this.pipeController.bentPipePrefab;
-        gameBoardObject = this.pipeController.InstantiatePipeObject(pipePrefab, this.gameBoardObjectPosition);
-        anim = gameBoardObject.GetComponent<Animator>();
-        this.pipeController.AddToPipeList(this);
+        pipePrefab = pipeController.bentPipePrefab;
+        isSelectable = true;
         
+        SetUpPipeObject(pipeController , tileID , tileGridID);
+        CreateGameBoardObject();
+
+        BentCounter++;
     }
+
+    
 }
