@@ -17,7 +17,7 @@ public class Straight : Pipe
         }
     }
     
-    public Straight(int tileID , int[] tileGridID , PipeController pipeController)
+    public Straight(int tileID , int[] tileGridID , GameBoardObjectController pipeController)
     {
         pipePrefab = pipeController.straightPipePrefab;
         isSelectable = true;

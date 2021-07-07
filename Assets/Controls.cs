@@ -5,7 +5,7 @@ using UnityEngine;
 public class Controls : IUnitys
 {
     private GameController gameController;
-    private PipeController pipeController;
+    private GameBoardObjectController pipeController;
 
     public Controls(GameController gameController )
     {

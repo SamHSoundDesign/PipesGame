@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class PipeController : Controllers, IUnitys
+public class GameBoardObjectController : Controllers, IUnitys
 {
     private List<Pipe> pipeList;
     public GameObject bentPipePrefab;
@@ -33,7 +33,7 @@ public class PipeController : Controllers, IUnitys
     public Pipe selectedPipe;
 
 
-    public PipeController(GameController gameController , GameObject bentPipePrefab , GameObject straightPipePrefab)
+    public GameBoardObjectController(GameController gameController , GameObject bentPipePrefab , GameObject straightPipePrefab)
     {
         pipeList = new List<Pipe>();
         this.gameController = gameController;

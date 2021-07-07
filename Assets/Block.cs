@@ -4,13 +4,13 @@ public class Block : GameBoardObjects
 {
     private BlockController blockController;
     private GameObject blockPrefab;
-      public Block(int tileID , int[] tileGridID , Vector3 blockPosition , BlockController blockController)
+      public Block(int tileID , int[] tileGridID , BlockController blockController)
     {
-        gameBoardObjectPosition = blockPosition;
+        
         //this.blockController = blockController;
         blockPrefab = blockController.blockPrefab;
-        base.tileID = tileID;
-        base.tileGridID = tileGridID;
+        this.tileID = tileID;
+        this.tileGridID = tileGridID;
         gameBoardObject = blockController.InstantiateBlockObject(blockPrefab, gameBoardObjectPosition);
        
     }

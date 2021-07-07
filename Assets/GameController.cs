@@ -20,7 +20,7 @@ public class GameController : MonoBehaviour
     private Controllers controllers;
     private GridController gridController;
     private TileController tileController;    
-    public PipeController pipeController;
+    public GameBoardObjectController pipeController;
     public BlockController blockController;
     private Controls controls;
 
@@ -48,7 +48,7 @@ public class GameController : MonoBehaviour
         
     {
         gridController = new GridController(this , xWidth , unitsPerGrid);
-        pipeController = new PipeController(this , bentPipePrefab , straightPipePrefab);
+        pipeController = new GameBoardObjectController(this , bentPipePrefab , straightPipePrefab);
         blockController = new BlockController(this);
         tileController = new TileController(this , pipeController , blockController , gridController);
         

@@ -17,7 +17,7 @@ public class Bent : Pipe
         }
     }
 
-    public Bent(int tileID, int[] tileGridID  , PipeController pipeController)
+    public Bent(int tileID, int[] tileGridID  , GameBoardObjectController pipeController)
     {
         pipePrefab = pipeController.bentPipePrefab;
         isSelectable = true;

@@ -6,12 +6,12 @@ using UnityEngine;
 public class TileController : Controllers , IUnitys
 {
     private List<Tile> tileList;
-    public PipeController pipeController;
+    public GameBoardObjectController pipeController;
     public BlockController blockController;
     private int[] tileGridID;
     private GridController gridController;
 
-    public TileController(GameController gameController , PipeController  pipeController , BlockController blockController , GridController gridController)
+    public TileController(GameController gameController , GameBoardObjectController  pipeController , BlockController blockController , GridController gridController)
     {
         tileList = new List<Tile>();
         base.gameController = gameController;

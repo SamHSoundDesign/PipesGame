@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class Pipe : GameBoardObjects
 {
-    protected PipeController pipeController;
+    protected GameBoardObjectController pipeController;
     public bool isSelected;
     public int rotationindex = 0;
     public int Rotationindex
@@ -41,7 +41,7 @@ public abstract class Pipe : GameBoardObjects
         anim.SetBool("isSelected", false);
     }
 
-    public void SetUpPipeObject(PipeController pipeController, int tileID, int[] tileGridID)
+    public void SetUpPipeObject(GameBoardObjectController pipeController, int tileID, int[] tileGridID)
     {
         this.pipeController = pipeController;
         SetUpGameBoardObject(tileID, tileGridID);
