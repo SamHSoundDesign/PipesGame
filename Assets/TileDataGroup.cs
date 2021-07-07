@@ -33,8 +33,7 @@ public class TileDataGroup : MonoBehaviour , IUnitys
 
         foreach (TileData tileData in tileDatasInGroup)
         {
-            //tileData.AStarts();
-            new Tile(tileController , tileData.pipeType , tileData.tilePosition , tileID);
+            new Tile(tileController , tileData.pipeType , tileID);
             tileID++;
           
         }
