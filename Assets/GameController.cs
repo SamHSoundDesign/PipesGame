@@ -27,13 +27,13 @@ public class GameController : MonoBehaviour
     void Start()
     {
         SetUpGameController();
+        controls = new Controls(this);
         
     }
 
 
     void Update()
     {
-        controls = new Controls(this);
         controls.BUpdates();
     }
 

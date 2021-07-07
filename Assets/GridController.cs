@@ -13,12 +13,6 @@ public GridController(GameController gameController , int xWidth , int unitsPerG
         
     }
    
-
-    public void AddGameBoardObjectToGrid(GameBoardObject gameBoardObject , int GameBoardObjectID)
-    {
-
-    }
-
     public int[] ConvertTileIdTo2DArray(int tileIndex)
     {
         int[] intArray = new int[2];
