@@ -3,7 +3,7 @@
 public class Block : GameBoardObject
 {
     
-    private BlockController blockController;
+    
     private GameObject blockPrefab;
       public Block(int tileID , int[] tileGridID , GameBoardObjectController gameBoardObjectController)
     {
@@ -13,7 +13,6 @@ public class Block : GameBoardObject
         this.tileID = tileID;
         this.tileGridID = tileGridID;
         gameBoardObject = gameBoardObjectController.InstantiateGameBoardObject(blockPrefab, gameBoardObjectPosition);
-
     }
 
     public void SetUpBlockObject(GameBoardObjectController gameBoardObjectController, int tileID, int[] tileGridID)

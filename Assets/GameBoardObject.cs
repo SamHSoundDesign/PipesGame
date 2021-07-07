@@ -12,7 +12,6 @@ public abstract class GameBoardObject
     protected bool isSelectable;
 
     public  void SetUpGameBoardObject(int tileID, int[] tileGridID )
-        
     {
         this.tileID = tileID;
         this.tileGridID = tileGridID;
