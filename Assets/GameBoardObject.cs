@@ -19,7 +19,6 @@ public abstract class GameBoardObject
         gameBoardObjectPosition.x = tileGridID[0];
         gameBoardObjectPosition.y = tileGridID[1];
         gameBoardObjectPosition.z = 0;
-       
     }
 
     

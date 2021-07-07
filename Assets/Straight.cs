@@ -4,19 +4,7 @@ using UnityEngine;
 
 public class Straight : Pipe
 {
-    private static int straightCounter;
-    public int StraightCounter
-    {
-        get
-        {
-            return straightCounter;
-        }
-        private set
-        {
-            straightCounter = value;
-        }
-    }
-    
+   
     public Straight(int tileID , int[] tileGridID , GameBoardObjectController gameBoardObjectController)
     {
         pipePrefab = gameBoardObjectController.straightPipePrefab;
@@ -25,8 +13,6 @@ public class Straight : Pipe
         SetUpPipeObject(tileID, tileGridID);
         CreateGameBoardObjectPipe(gameBoardObjectController);
 
-
-        StraightCounter++;
     }
 
     
