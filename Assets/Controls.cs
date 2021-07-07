@@ -5,12 +5,12 @@ using UnityEngine;
 public class Controls : IUnitys
 {
     private GameController gameController;
-    private GameBoardObjectController pipeController;
+    private GameBoardObjectController gameBoardObjectController;
 
-    public Controls(GameController gameController )
+    public Controls(GameController gameController)
     {
         this.gameController = gameController;
-        this.pipeController = gameController.pipeController;
+        this.gameBoardObjectController = gameController.gameBoardObjectController;
 
     }
     public void AStarts()
@@ -22,30 +22,29 @@ public class Controls : IUnitys
     {
         if (Input.GetKeyDown(KeyCode.W))
         {
-            pipeController.SelectPipeAbove();
+            gameBoardObjectController.SelectPipeAbove();
         }
 
         if (Input.GetKeyDown(KeyCode.A))
         {
-            pipeController.SelectPipeLeft();
+            gameBoardObjectController.SelectPipeLeft();
         }
 
         if (Input.GetKeyDown(KeyCode.S))
         {
-            pipeController.SelectPipeBelow();
+            gameBoardObjectController.SelectPipeBelow();
         }
 
         if (Input.GetKeyDown(KeyCode.D))
         {
-            pipeController.SelectPipeRight();
+            gameBoardObjectController.SelectPipeRight();
         }
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            gameController.pipeController.selectedPipe.RotatePipe();
+            gameController.gameBoardObjectController.selectedPipe.RotatePipe();
         }
-
-
+          
     }
 
     public void CFixedUpdates()

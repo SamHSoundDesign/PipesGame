@@ -18,8 +18,6 @@ public class TileController : Controllers , IUnitys
         this.pipeController = pipeController;
         this.blockController = blockController;
         this.gridController = gridController;
-       
-
     }
 
     public void AStarts()

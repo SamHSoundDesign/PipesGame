@@ -17,13 +17,13 @@ public class Bent : Pipe
         }
     }
 
-    public Bent(int tileID, int[] tileGridID  , GameBoardObjectController pipeController)
+    public Bent(int tileID, int[] tileGridID  , GameBoardObjectController gameBoardObjectController)
     {
-        pipePrefab = pipeController.bentPipePrefab;
+        pipePrefab = gameBoardObjectController.bentPipePrefab;
         isSelectable = true;
-        
-        SetUpPipeObject(pipeController , tileID , tileGridID);
-        CreateGameBoardObject();
+
+        SetUpGameBoardObject(tileID, tileGridID);
+        CreateGameBoardObjectPipe(gameBoardObjectController);
 
         BentCounter++;
     }

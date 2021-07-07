@@ -20,9 +20,9 @@ public class GameController : MonoBehaviour
     private Controllers controllers;
     private GridController gridController;
     private TileController tileController;    
-    public GameBoardObjectController pipeController;
+    public GameBoardObjectController gameBoardObjectController;
     public BlockController blockController;
-    private Controls controls;
+    public Controls controls;
 
     void Start()
     {
@@ -33,6 +33,7 @@ public class GameController : MonoBehaviour
 
     void Update()
     {
+        controls = new Controls(this);
         controls.BUpdates();
     }
 
@@ -48,17 +49,16 @@ public class GameController : MonoBehaviour
         
     {
         gridController = new GridController(this , xWidth , unitsPerGrid);
-        pipeController = new GameBoardObjectController(this , bentPipePrefab , straightPipePrefab);
-        blockController = new BlockController(this);
-        tileController = new TileController(this , pipeController , blockController , gridController);
+        gameBoardObjectController = new GameBoardObjectController(this , bentPipePrefab , straightPipePrefab);
+        tileController = new TileController(this , gameBoardObjectController, blockController , gridController);
         
         tileDataGroup.ManualStart(tileController);
 
         tileController.AStarts();
 
-        pipeController.AStarts();
+        gameBoardObjectController.AStarts();
 
-        controls = new Controls(this);
+       
     }
 
 

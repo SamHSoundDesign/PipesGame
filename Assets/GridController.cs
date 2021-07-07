@@ -14,7 +14,7 @@ public GridController(GameController gameController , int xWidth , int unitsPerG
     }
    
 
-    public void AddGameBoardObjectToGrid(GameBoardObjects gameBoardObject , int GameBoardObjectID)
+    public void AddGameBoardObjectToGrid(GameBoardObject gameBoardObject , int GameBoardObjectID)
     {
 
     }

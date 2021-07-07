@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Pipe : GameBoardObjects
+public abstract class Pipe : GameBoardObject
 {
-    protected GameBoardObjectController pipeController;
+    
     public bool isSelected;
     public int rotationindex = 0;
     public int Rotationindex
@@ -41,21 +41,19 @@ public abstract class Pipe : GameBoardObjects
         anim.SetBool("isSelected", false);
     }
 
-    public void SetUpPipeObject(GameBoardObjectController pipeController, int tileID, int[] tileGridID)
+    public void SetUpPipeObject(int tileID, int[] tileGridID)
     {
-        this.pipeController = pipeController;
         SetUpGameBoardObject(tileID, tileGridID);
     }
 
-    public void CreateGameBoardObject()
+    public void CreateGameBoardObjectPipe(GameBoardObjectController gameBoardObecjectController)
     {
 
-        gameBoardObject = pipeController.InstantiatePipeObject(pipePrefab, gameBoardObjectPosition);
-        Debug.Log(gameBoardObject);
-
+        gameBoardObject = gameBoardObecjectController.InstantiateGameBoardObject(pipePrefab, gameBoardObjectPosition);
+        
         anim = gameBoardObject.GetComponent<Animator>();
 
-        this.pipeController.AddToPipeList(this);
+        gameBoardObecjectController.AddToAllGameBoardObjectsList(this);
     }
 
     public void RotatePipe()

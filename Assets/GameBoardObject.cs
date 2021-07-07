@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class GameBoardObjects 
+public abstract class GameBoardObject 
 {
 
     protected GameBoardObjectTypes gamBoardObjectType;
@@ -11,14 +11,15 @@ public abstract class GameBoardObjects
     protected int[] tileGridID;
     protected bool isSelectable;
 
-    public  void SetUpGameBoardObject(int tileID, int[] tileGridID)
+    public  void SetUpGameBoardObject(int tileID, int[] tileGridID )
         
     {
         this.tileID = tileID;
         this.tileGridID = tileGridID;
-        this.gameBoardObjectPosition.x = tileGridID[0];
-        this.gameBoardObjectPosition.y = tileGridID[1];
-        this.gameBoardObjectPosition.z = 0;
+        gameBoardObjectPosition.x = tileGridID[0];
+        gameBoardObjectPosition.y = tileGridID[1];
+        gameBoardObjectPosition.z = 0;
+       
     }
 
     

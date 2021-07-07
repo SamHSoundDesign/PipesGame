@@ -1,17 +1,35 @@
 ﻿using UnityEngine;
 
-public class Block : GameBoardObjects
+public class Block : GameBoardObject
 {
+    
     private BlockController blockController;
     private GameObject blockPrefab;
-      public Block(int tileID , int[] tileGridID , BlockController blockController)
+      public Block(int tileID , int[] tileGridID , GameBoardObjectController gameBoardObjectController)
     {
-        
-        //this.blockController = blockController;
-        blockPrefab = blockController.blockPrefab;
+        blockPrefab = gameBoardObjectController.blockPrefab;
+        SetUpGameBoardObject(tileID, tileGridID);
+        isSelectable = false;
         this.tileID = tileID;
         this.tileGridID = tileGridID;
-        gameBoardObject = blockController.InstantiateBlockObject(blockPrefab, gameBoardObjectPosition);
-       
+        gameBoardObject = gameBoardObjectController.InstantiateGameBoardObject(blockPrefab, gameBoardObjectPosition);
+
     }
+
+    public void SetUpBlockObject(GameBoardObjectController gameBoardObjectController, int tileID, int[] tileGridID)
+    {
+        SetUpGameBoardObject(tileID, tileGridID);
+        CreateGameBoardObjectBlock(gameBoardObjectController);
+    }
+
+    public void CreateGameBoardObjectBlock(GameBoardObjectController gameBoardObjectController)
+    {
+
+        gameBoardObject = gameBoardObjectController.InstantiateGameBoardObject(blockPrefab, gameBoardObjectPosition);
+
+        anim = gameBoardObject.GetComponent<Animator>();
+
+        gameBoardObjectController.AddToAllGameBoardObjectsList(this);
+    }
+
 }

@@ -17,13 +17,13 @@ public class Straight : Pipe
         }
     }
     
-    public Straight(int tileID , int[] tileGridID , GameBoardObjectController pipeController)
+    public Straight(int tileID , int[] tileGridID , GameBoardObjectController gameBoardObjectController)
     {
-        pipePrefab = pipeController.straightPipePrefab;
+        pipePrefab = gameBoardObjectController.straightPipePrefab;
         isSelectable = true;
 
-        SetUpPipeObject(pipeController, tileID, tileGridID);
-        CreateGameBoardObject();
+        SetUpPipeObject(tileID, tileGridID);
+        CreateGameBoardObjectPipe(gameBoardObjectController);
 
 
         StraightCounter++;
