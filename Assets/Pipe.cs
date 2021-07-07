@@ -46,14 +46,15 @@ public abstract class Pipe : GameBoardObject
         SetUpGameBoardObject(tileID, tileGridID);
     }
 
-    public void CreateGameBoardObjectPipe(GameBoardObjectController gameBoardObecjectController)
+    public void CreateGameBoardObjectPipe(GameBoardObjectController gameBoardObjectController)
     {
 
-        gameBoardObject = gameBoardObecjectController.InstantiateGameBoardObject(pipePrefab, gameBoardObjectPosition);
+        gameBoardObject = gameBoardObjectController.InstantiateGameBoardObject(pipePrefab, gameBoardObjectPosition);
         
         anim = gameBoardObject.GetComponent<Animator>();
 
-        gameBoardObecjectController.AddToAllGameBoardObjectsList(this);
+        gameBoardObjectController.AddToAllGameBoardObjectsList(this);
+        gameBoardObjectController.AddToAllPipesList(this);
     }
 
     public void RotatePipe()

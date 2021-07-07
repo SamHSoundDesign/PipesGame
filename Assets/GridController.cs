@@ -1,6 +1,6 @@
 public class GridController : Controllers
 {
-    private int xWidth;
+    public int xWidth;
     private int unitsPerGrid;
     private int[,] grid;
 

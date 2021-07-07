@@ -9,6 +9,7 @@ public class GameBoardObjectController : Controllers, IUnitys
     public GameObject bentPipePrefab;
     public GameObject straightPipePrefab;
     public GameObject blockPrefab;
+    private GridController gridController;
 
     private int selectedPipeID;
     public int SelectedPipeID
@@ -36,7 +37,7 @@ public class GameBoardObjectController : Controllers, IUnitys
     public Pipe  selectedPipe;
 
 
-    public GameBoardObjectController(GameController gameController , GameObject bentPipePrefab , GameObject straightPipePrefab)
+    public GameBoardObjectController(GameController gameController , GameObject bentPipePrefab , GameObject straightPipePrefab , GridController gridController)
     {
         allGameBoardObjects = new List<GameBoardObject>();
         allPipes = new List<Pipe>();
@@ -44,6 +45,7 @@ public class GameBoardObjectController : Controllers, IUnitys
         this.gameController = gameController;
         this.bentPipePrefab = bentPipePrefab;
         this.straightPipePrefab = straightPipePrefab;
+        this.gridController = gridController;
         SelectedPipeID = 0;
     }
 
@@ -86,27 +88,25 @@ public class GameBoardObjectController : Controllers, IUnitys
 
     public void SelectPipeAbove()
     {
-        SelectPipe(3    );
+        ChangeSelectedPipe(gridController.xWidth);
     }
 
     public void SelectPipeBelow()
     {
-        SelectPipe(-3);
+        ChangeSelectedPipe(gridController.xWidth * -1);
     }
 
     public void SelectPipeRight()
     {
-        
-        SelectPipe(1);
+        ChangeSelectedPipe(1);
     }
 
     public void SelectPipeLeft()
     {
-       
-        SelectPipe(-1);
+        ChangeSelectedPipe(-1);
     }
 
-    private void SelectPipe(int direction)
+    private void ChangeSelectedPipe(int direction)
     {
         selectedPipe.UnselectPipe();
         SelectedPipeID += direction;

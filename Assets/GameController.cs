@@ -16,8 +16,6 @@ public class GameController : MonoBehaviour
       
     //Tile Group
     [SerializeField] private TileDataGroup tileDataGroup;
-
-    private Controllers controllers;
     private GridController gridController;
     private TileController tileController;    
     public GameBoardObjectController gameBoardObjectController;
@@ -27,7 +25,7 @@ public class GameController : MonoBehaviour
     void Start()
     {
         SetUpGameController();
-        controls = new Controls(this);
+        
         
     }
 
@@ -49,8 +47,9 @@ public class GameController : MonoBehaviour
         
     {
         gridController = new GridController(this , xWidth , unitsPerGrid);
-        gameBoardObjectController = new GameBoardObjectController(this , bentPipePrefab , straightPipePrefab);
-        tileController = new TileController(this , gameBoardObjectController, blockController , gridController);
+        gameBoardObjectController = new GameBoardObjectController(this , bentPipePrefab , straightPipePrefab , gridController);
+        controls = new Controls(this);
+        tileController = new TileController(this , gameBoardObjectController , gridController);
         
         tileDataGroup.ManualStart(tileController);
 

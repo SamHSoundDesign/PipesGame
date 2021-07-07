@@ -2,17 +2,12 @@
 
 public class Block : GameBoardObject
 {
-    
-    
     private GameObject blockPrefab;
-      public Block(int tileID , int[] tileGridID , GameBoardObjectController gameBoardObjectController)
+    public Block(int tileID, int[] tileGridID, GameBoardObjectController gameBoardObjectController)
     {
         blockPrefab = gameBoardObjectController.blockPrefab;
-        SetUpGameBoardObject(tileID, tileGridID);
         isSelectable = false;
-        this.tileID = tileID;
-        this.tileGridID = tileGridID;
-        gameBoardObject = gameBoardObjectController.InstantiateGameBoardObject(blockPrefab, gameBoardObjectPosition);
+        SetUpBlockObject(gameBoardObjectController , tileID, tileGridID);
     }
 
     public void SetUpBlockObject(GameBoardObjectController gameBoardObjectController, int tileID, int[] tileGridID)
@@ -29,6 +24,7 @@ public class Block : GameBoardObject
         anim = gameBoardObject.GetComponent<Animator>();
 
         gameBoardObjectController.AddToAllGameBoardObjectsList(this);
+        gameBoardObjectController.AddToAllBlockList(this);
     }
 
 }

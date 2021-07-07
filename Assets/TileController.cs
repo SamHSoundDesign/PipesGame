@@ -6,17 +6,15 @@ using UnityEngine;
 public class TileController : Controllers , IUnitys
 {
     private List<Tile> tileList;
-    public GameBoardObjectController pipeController;
-    public BlockController blockController;
+    public GameBoardObjectController gameBoardObjectController;
     private int[] tileGridID;
     private GridController gridController;
 
-    public TileController(GameController gameController , GameBoardObjectController  pipeController , BlockController blockController , GridController gridController)
+    public TileController(GameController gameController , GameBoardObjectController gameBoardObjectController , GridController gridController)
     {
         tileList = new List<Tile>();
         base.gameController = gameController;
-        this.pipeController = pipeController;
-        this.blockController = blockController;
+        this.gameBoardObjectController = gameBoardObjectController;
         this.gridController = gridController;
     }
 
@@ -24,11 +22,8 @@ public class TileController : Controllers , IUnitys
     {
         foreach (Tile tile in tileList)
         {
-            
-            tile.CreateGameBoardObject(pipeController , blockController);
+            tile.CreateGameBoardObject(gameBoardObjectController);
         }
-
-        
     }
 
     public void BUpdates()

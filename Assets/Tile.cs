@@ -23,9 +23,8 @@ public class Tile
         //Debug.Log(@$"Tile ID {tileID} has tile Grid id[0] = {tileGridID[0]} and has tile gridid[1] = {tileGridID[1]}");
     }
 
-    public void CreateGameBoardObject(GameBoardObjectController gameBoardObjectController, BlockController blockController)
+    public void CreateGameBoardObject(GameBoardObjectController gameBoardObjectController)
     {
-        
             if (gameBoardObjectType == GameBoardObjectTypes.Straight)
             {
                 new Straight(tileID, tileGridID , gameBoardObjectController);
